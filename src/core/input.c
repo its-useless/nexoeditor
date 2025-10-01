@@ -49,10 +49,10 @@ void Input_InputChar(wchar_t k) {
             line_char++;
         }
         c++;
+        pos_index++;
     }
 
     if (pos) {
-        pos_index = (size_t)pos - (size_t)state.buffer;
         Buffer_InsertChar(pos_index, k);
         Cursor_MoveRight();
     }
@@ -74,4 +74,3 @@ bool Input_HandleKeypress(wchar_t k) {
     }
     return FALSE;
 }
-

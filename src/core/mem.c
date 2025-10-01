@@ -1,4 +1,4 @@
-#include "mem.h"
+#include "core/mem.h"
 
 #include <assert.h>
 #include <stdlib.h>

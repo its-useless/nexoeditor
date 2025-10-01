@@ -1,8 +1,8 @@
-#include "renderer.h"
+#include "core/renderer.h"
 
 #include <ncurses.h>
 
-#include "buffer.h"
+#include "core/buffer.h"
 
 Renderer renderer = {0};
 

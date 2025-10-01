@@ -2,15 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "buffer.h"
-#include "cursor.h"
-#include "mem.h"
-#include "renderer.h"
+#include "core/buffer.h"
+#include "core/cursor.h"
+#include "core/input.h"
+#include "core/mem.h"
+#include "core/renderer.h"
 
 int main() {
     buffer = xstralloc("Hello, World!\nline1\nline2\nline3");
 
     initscr();
+    keypad(stdscr, TRUE);
+
     for (;;) {
         int k;
 
@@ -25,7 +28,8 @@ int main() {
         refresh();
 
         k = getch();
-        Cursor_HandleKeypress(k);
+        if (!Cursor_HandleKeypress(k))
+            Input_HandleKeypress(k);
 
         if (k == 'q')
             break;

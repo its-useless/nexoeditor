@@ -5,4 +5,6 @@
 
 extern char* buffer;
 
+extern void Buffer_InsertChar(size_t pos, char c);
+
 #endif // BUFFER_H

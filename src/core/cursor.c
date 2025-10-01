@@ -1,6 +1,8 @@
-#include "cursor.h"
+#include "core/cursor.h"
 
-#include "buffer.h"
+#include <curses.h>
+
+#include "core/buffer.h"
 
 Cursor cursor = {0};
 
@@ -15,32 +17,33 @@ void Cursor_MoveDown() {
 }
 
 void Cursor_MoveLeft() {
-    cursor.x++;
-    Cursor_EnsurePosition();
-}
-
-void Cursor_MoveRight() {
     cursor.x--;
     Cursor_EnsurePosition();
 }
 
-void Cursor_HandleKeypress(int key) {
+void Cursor_MoveRight() {
+    cursor.x++;
+    Cursor_EnsurePosition();
+}
+
+bool Cursor_HandleKeypress(int key) {
     switch (key) {
-        case 'h':
-            Cursor_MoveRight();
-            break;
-        case 'j':
-            Cursor_MoveDown();
-            break;
-        case 'k':
-            Cursor_MoveUp();
-            break;
-        case 'l':
+        case KEY_LEFT:
             Cursor_MoveLeft();
-            break;
+            return TRUE;
+        case KEY_DOWN:
+            Cursor_MoveDown();
+            return TRUE;
+        case KEY_UP:
+            Cursor_MoveUp();
+            return TRUE;
+        case KEY_RIGHT:
+            Cursor_MoveRight();
+            return TRUE;
         default:
             break;
     }
+    return FALSE;
 }
 
 void Cursor_EnsurePosition() {

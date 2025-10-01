@@ -2,6 +2,7 @@
     #define CORE_INPUT_H
 
     #include <stdbool.h>
-extern bool Input_HandleKeypress(int k);
+    #include <wchar.h>
+extern bool Input_HandleKeypress(wchar_t k);
 
 #endif

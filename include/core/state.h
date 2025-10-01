@@ -1,9 +1,10 @@
 #if !defined(CORE_STATE_H)
     #define CORE_STATE_H
     #include <curses.h>
+    #include <wchar.h>
 
 typedef struct State {
-    char* buffer;
+    wchar_t* buffer;
     bool running;
 } State;
 

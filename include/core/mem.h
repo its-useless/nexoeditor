@@ -2,9 +2,10 @@
     #define CORE_MEM_H
 
     #include <stddef.h>
+    #include <wchar.h>
 
 extern void* xmalloc(size_t size);
-extern char* xstralloc(const char* text);
+extern wchar_t* xstralloc(const wchar_t* text);
 
 extern void xfree(void* ptr);
 

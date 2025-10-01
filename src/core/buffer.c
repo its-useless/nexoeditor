@@ -5,8 +5,8 @@
 
 #include "core/state.h"
 
-void Buffer_InsertChar(size_t pos, char c) {
-    char* p = state.buffer;
+void Buffer_InsertChar(size_t pos, wchar_t c) {
+    wchar_t* p = state.buffer;
     size_t len = 0;
 
     while (*p) {
@@ -14,11 +14,11 @@ void Buffer_InsertChar(size_t pos, char c) {
         len++;
     }
 
-    state.buffer = realloc(
-        state.buffer,
-        len + 1
-            + 1 /* one for the new char one for the null byte (isn't included in len) */
+    state.buffer = realloc(state.buffer, (len + 1 + 1) * sizeof(wchar_t));
+    memmove(
+        state.buffer + pos + 1,
+        state.buffer + pos,
+        (len + 1 - pos) * sizeof(wchar_t)
     );
-    memmove(state.buffer + pos + 1, state.buffer + pos, len + 1 - pos);
     state.buffer[pos] = c;
 }

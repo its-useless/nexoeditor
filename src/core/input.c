@@ -12,7 +12,7 @@ bool Input_IsTextChar(int k) {
 }
 
 void Input_InputChar(int k) {
-    char *c, *pos = NULL;
+    wchar_t *c, *pos = NULL;
     size_t line = 0, line_char = 0, pos_index = 0;
 
     /* find our pos in text */
@@ -41,19 +41,10 @@ void Input_InputChar(int k) {
     }
 }
 
-bool Input_HandleKeypress(int k) {
+bool Input_HandleKeypress(wchar_t k) {
     switch (k) {
         case 27: {
-            int n;
-            nodelay(stdscr, TRUE);
-            n = getch();
-            if (n == ERR) {
-                /* Escape was pressed */
-                nodelay(stdscr, FALSE);
-                state.running = FALSE;
-            } else {
-                ungetch(n);
-            }
+            state.running = FALSE;
             break;
         }
         default:

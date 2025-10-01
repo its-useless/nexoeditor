@@ -10,9 +10,9 @@ void* xmalloc(size_t size) {
     return ptr;
 }
 
-char* xstralloc(const char* text) {
-    size_t len = strlen(text) + 1;
-    char* ptr = xmalloc(len);
+wchar_t* xstralloc(const wchar_t* text) {
+    size_t len = wcslen(text) * sizeof(wchar_t) + sizeof(wchar_t);
+    wchar_t* ptr = xmalloc(len);
     memcpy(ptr, text, len);
     return ptr;
 }

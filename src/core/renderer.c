@@ -7,7 +7,7 @@
 
 Renderer renderer = {0};
 
-void Renderer_RenderBuffer() {
+void Renderer_RenderBuffer(void) {
     size_t line = 0, line_char = 0;
     wchar_t* c = state.buffer;
     while (*c) {

@@ -7,22 +7,22 @@
 
 Cursor cursor = {0};
 
-void Cursor_MoveUp() {
+void Cursor_MoveUp(void) {
     cursor.y--;
     Cursor_EnsurePosition();
 }
 
-void Cursor_MoveDown() {
+void Cursor_MoveDown(void) {
     cursor.y++;
     Cursor_EnsurePosition();
 }
 
-void Cursor_MoveLeft() {
+void Cursor_MoveLeft(void) {
     cursor.x--;
     Cursor_EnsurePosition();
 }
 
-void Cursor_MoveRight() {
+void Cursor_MoveRight(void) {
     cursor.x++;
     Cursor_EnsurePosition();
 }
@@ -47,7 +47,7 @@ bool Cursor_HandleKeypress(wchar_t key) {
     return FALSE;
 }
 
-void Cursor_EnsurePosition() {
+void Cursor_EnsurePosition(void) {
     size_t lines = 0;
     wchar_t *line = NULL, *c = state.buffer;
 

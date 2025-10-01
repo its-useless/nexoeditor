@@ -22,3 +22,4 @@ void Buffer_InsertChar(size_t pos, wchar_t c) {
     );
     state.buffer[pos] = c;
 }
+

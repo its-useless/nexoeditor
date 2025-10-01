@@ -7,6 +7,6 @@ typedef struct Renderer {
 
 extern Renderer renderer;
 
-extern void Renderer_RenderBuffer();
+extern void Renderer_RenderBuffer(void);
 
 #endif

@@ -10,11 +10,11 @@ typedef struct Cursor {
 
 extern Cursor cursor;
 
-extern void Cursor_MoveUp();
-extern void Cursor_MoveDown();
-extern void Cursor_MoveLeft();
-extern void Cursor_MoveRight();
+extern void Cursor_MoveUp(void);
+extern void Cursor_MoveDown(void);
+extern void Cursor_MoveLeft(void);
+extern void Cursor_MoveRight(void);
 extern bool Cursor_HandleKeypress(wchar_t key);
-extern void Cursor_EnsurePosition();
+extern void Cursor_EnsurePosition(void);
 
 #endif

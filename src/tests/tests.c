@@ -13,7 +13,7 @@ const char* TEST_NAMES[] = {
     "buffer_insert_4",
     "buffer_insert_5"
 };
-bool (*const TEST_FUNCS[])() = {
+bool (*const TEST_FUNCS[])(void) = {
     test_buffer_insert_1,
     test_buffer_insert_2,
     test_buffer_insert_3,
@@ -21,7 +21,7 @@ bool (*const TEST_FUNCS[])() = {
     test_buffer_insert_5
 };
 
-int main() {
+int main(void) {
     size_t i, total_tests, passed_tests = 0, failed_tests = 0;
     total_tests = sizeof(TEST_NAMES) / sizeof(TEST_NAMES[0]);
 

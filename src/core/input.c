@@ -52,7 +52,7 @@ void Input_InputChar(wchar_t k) {
     }
 
     if (pos) {
-        pos_index = pos - state.buffer;
+        pos_index = (size_t)pos - (size_t)state.buffer;
         Buffer_InsertChar(pos_index, k);
         Cursor_MoveRight();
     }
@@ -74,3 +74,4 @@ bool Input_HandleKeypress(wchar_t k) {
     }
     return FALSE;
 }
+

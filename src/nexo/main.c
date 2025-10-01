@@ -13,7 +13,7 @@
 /* ion know where it's defined */
 void get_wch(wchar_t*);
 
-int main() {
+int main(void) {
     setlocale(LC_ALL, "");
 
     state.buffer = xstralloc(L"00\n11\n22\n33\nтест киррилицы");

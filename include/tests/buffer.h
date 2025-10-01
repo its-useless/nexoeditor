@@ -2,10 +2,10 @@
     #define TESTS_BUFFER_H
     #include <curses.h>
 
-extern bool test_buffer_insert_1();
-extern bool test_buffer_insert_2();
-extern bool test_buffer_insert_3();
-extern bool test_buffer_insert_4();
-extern bool test_buffer_insert_5();
+extern bool test_buffer_insert_1(void);
+extern bool test_buffer_insert_2(void);
+extern bool test_buffer_insert_3(void);
+extern bool test_buffer_insert_4(void);
+extern bool test_buffer_insert_5(void);
 
 #endif

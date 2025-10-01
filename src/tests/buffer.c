@@ -7,7 +7,7 @@
 #include "core/mem.h"
 #include "core/state.h"
 
-bool test_buffer_insert_1() {
+bool test_buffer_insert_1(void) {
     bool res;
 
     state.buffer = xstralloc(L"test");
@@ -18,7 +18,7 @@ bool test_buffer_insert_1() {
     return res;
 }
 
-bool test_buffer_insert_2() {
+bool test_buffer_insert_2(void) {
     bool res;
 
     state.buffer = xstralloc(L"test");
@@ -29,7 +29,7 @@ bool test_buffer_insert_2() {
     return res;
 }
 
-bool test_buffer_insert_3() {
+bool test_buffer_insert_3(void) {
     bool res;
 
     state.buffer = xstralloc(L"test");
@@ -40,7 +40,7 @@ bool test_buffer_insert_3() {
     return res;
 }
 
-bool test_buffer_insert_4() {
+bool test_buffer_insert_4(void) {
     bool res;
 
     state.buffer = xstralloc(L"test");
@@ -52,7 +52,7 @@ bool test_buffer_insert_4() {
     return res;
 }
 
-bool test_buffer_insert_5() {
+bool test_buffer_insert_5(void) {
     bool res;
 
     state.buffer = xstralloc(L"test");

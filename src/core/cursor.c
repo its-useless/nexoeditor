@@ -27,7 +27,7 @@ void Cursor_MoveRight() {
     Cursor_EnsurePosition();
 }
 
-bool Cursor_HandleKeypress(int key) {
+bool Cursor_HandleKeypress(wchar_t key) {
     switch (key) {
         case KEY_LEFT:
             Cursor_MoveLeft();
@@ -49,7 +49,7 @@ bool Cursor_HandleKeypress(int key) {
 
 void Cursor_EnsurePosition() {
     size_t lines = 0;
-    char *line = NULL, *c = state.buffer;
+    wchar_t *line = NULL, *c = state.buffer;
 
     while (*c) {
         if (*c == '\n') {

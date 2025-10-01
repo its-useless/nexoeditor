@@ -6,13 +6,30 @@
 #include "core/cursor.h"
 #include "core/state.h"
 
-bool Input_IsTextChar(int k) {
-    return (k >= 'a' && k <= 'z') || (k >= 'A' && k <= 'Z') || k == '!'
-        || k == '.' || k == '-' || k == '+' || k == ' ';
+bool Input_IsTextChar(wchar_t k) {
+    size_t i, ranges_total;
+    const wchar_t ranges[][2] = {
+        {L'a', L'z'},
+        {L'A', L'Z'},
+        {L'а', L'я'},
+        {L'А', L'Я'},
+        {L'!', L'!'},
+        {L'.', L'.'},
+        {L',', L','},
+        {L' ', L' '},
+    };
+    ranges_total = sizeof(ranges) / sizeof(ranges[0]);
+    for (i = 0; i < ranges_total; i++) {
+        const wchar_t* range = ranges[i];
+        if (k >= range[0] && k <= range[1]) {
+            return true;
+        }
+    }
+    return false;
 }
 
-void Input_InputChar(int k) {
-    char *c, *pos = NULL;
+void Input_InputChar(wchar_t k) {
+    wchar_t *c, *pos = NULL;
     size_t line = 0, line_char = 0, pos_index = 0;
 
     /* find our pos in text */
@@ -36,24 +53,15 @@ void Input_InputChar(int k) {
 
     if (pos) {
         pos_index = pos - state.buffer;
-        Buffer_InsertChar(pos_index, (char)k);
+        Buffer_InsertChar(pos_index, k);
         Cursor_MoveRight();
     }
 }
 
-bool Input_HandleKeypress(int k) {
+bool Input_HandleKeypress(wchar_t k) {
     switch (k) {
         case 27: {
-            int n;
-            nodelay(stdscr, TRUE);
-            n = getch();
-            if (n == ERR) {
-                /* Escape was pressed */
-                nodelay(stdscr, FALSE);
-                state.running = FALSE;
-            } else {
-                ungetch(n);
-            }
+            state.running = FALSE;
             break;
         }
         default:

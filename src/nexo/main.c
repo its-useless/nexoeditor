@@ -1,3 +1,4 @@
+#include <locale.h>
 #include <ncurses.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,8 +10,13 @@
 #include "core/renderer.h"
 #include "core/state.h"
 
+/* ion know where it's defined */
+void get_wch(wchar_t*);
+
 int main() {
-    state.buffer = xstralloc("00\n11\n22\n33");
+    setlocale(LC_ALL, "");
+
+    state.buffer = xstralloc(L"00\n11\n22\n33\nтест киррилицы");
 
     initscr();
     keypad(stdscr, TRUE);
@@ -18,7 +24,7 @@ int main() {
 
     state.running = TRUE;
     while (state.running) {
-        int k;
+        wchar_t k;
 
         clear();
 
@@ -30,7 +36,7 @@ int main() {
 
         refresh();
 
-        k = getch();
+        get_wch(&k);
         if (!Cursor_HandleKeypress(k))
             Input_HandleKeypress(k);
     }

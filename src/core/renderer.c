@@ -3,12 +3,13 @@
 #include <ncurses.h>
 
 #include "core/buffer.h"
+#include "core/state.h"
 
 Renderer renderer = {0};
 
 void Renderer_RenderBuffer() {
     size_t line = 0, line_char = 0;
-    char* c = buffer;
+    char* c = state.buffer;
     while (*c) {
         if (*c == '\n') {
             line++;

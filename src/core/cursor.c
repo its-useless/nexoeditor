@@ -3,6 +3,7 @@
 #include <curses.h>
 
 #include "core/buffer.h"
+#include "core/state.h"
 
 Cursor cursor = {0};
 
@@ -48,7 +49,7 @@ bool Cursor_HandleKeypress(int key) {
 
 void Cursor_EnsurePosition() {
     size_t lines = 0;
-    char *line = NULL, *c = buffer;
+    char *line = NULL, *c = state.buffer;
 
     while (*c) {
         if (*c == '\n') {

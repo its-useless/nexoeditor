@@ -3,6 +3,7 @@
     #include <curses.h>
 
 typedef struct State {
+    char* buffer;
     bool running;
 } State;
 

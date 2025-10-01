@@ -16,7 +16,7 @@ void Input_InputChar(int k) {
     size_t line = 0, line_char = 0, pos_index = 0;
 
     /* find our pos in text */
-    c = buffer;
+    c = state.buffer;
     for (;;) {
         if (line_char == cursor.x && line == cursor.y) {
             pos = c;
@@ -35,7 +35,7 @@ void Input_InputChar(int k) {
     }
 
     if (pos) {
-        pos_index = pos - buffer;
+        pos_index = pos - state.buffer;
         Buffer_InsertChar(pos_index, (char)k);
         Cursor_MoveRight();
     }

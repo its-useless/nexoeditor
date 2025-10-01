@@ -10,7 +10,7 @@
 #include "core/state.h"
 
 int main() {
-    buffer = xstralloc("00\n11\n22\n33");
+    state.buffer = xstralloc("00\n11\n22\n33");
 
     initscr();
     keypad(stdscr, TRUE);
@@ -36,6 +36,6 @@ int main() {
     }
     endwin();
 
-    xfree(buffer);
+    xfree(state.buffer);
     return 0;
 }

@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* buffer = NULL;
+#include "core/state.h"
 
 void Buffer_InsertChar(size_t pos, char c) {
-    char* p = buffer;
+    char* p = state.buffer;
     size_t len = 0;
 
     while (*p) {
@@ -14,11 +14,11 @@ void Buffer_InsertChar(size_t pos, char c) {
         len++;
     }
 
-    buffer = realloc(
-        buffer,
+    state.buffer = realloc(
+        state.buffer,
         len + 1
             + 1 /* one for the new char one for the null byte (isn't included in len) */
     );
-    memmove(buffer + pos + 1, buffer + pos, len + 1 - pos);
-    buffer[pos] = c;
+    memmove(state.buffer + pos + 1, state.buffer + pos, len + 1 - pos);
+    state.buffer[pos] = c;
 }

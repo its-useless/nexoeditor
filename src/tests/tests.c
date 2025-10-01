@@ -32,10 +32,41 @@ bool test_buffer_insert_3() {
     return res;
 }
 
-const char* TEST_NAMES[] =
-    {"buffer_insert_1", "buffer_insert_2", "buffer_insert_3"};
-bool (*const TEST_FUNCS[])() =
-    {test_buffer_insert_1, test_buffer_insert_2, test_buffer_insert_3};
+bool test_buffer_insert_4() {
+    buffer = xstralloc("test");
+    Buffer_InsertChar(1, 'c');
+    Buffer_InsertChar(1, 'c');
+    bool res = memcmp(buffer, "tccest\0", 7) == 0;
+    xfree(buffer);
+
+    return res;
+}
+
+bool test_buffer_insert_5() {
+    buffer = xstralloc("test");
+    Buffer_InsertChar(1, 'c');
+    Buffer_InsertChar(0, 'c');
+    Buffer_InsertChar(6, 'c');
+    bool res = memcmp(buffer, "ctcestc\0", 8) == 0;
+    xfree(buffer);
+
+    return res;
+}
+
+const char* TEST_NAMES[] = {
+    "buffer_insert_1",
+    "buffer_insert_2",
+    "buffer_insert_3",
+    "buffer_insert_4",
+    "buffer_insert_5"
+};
+bool (*const TEST_FUNCS[])() = {
+    test_buffer_insert_1,
+    test_buffer_insert_2,
+    test_buffer_insert_3,
+    test_buffer_insert_4,
+    test_buffer_insert_5
+};
 
 int main() {
     size_t i, total_tests;

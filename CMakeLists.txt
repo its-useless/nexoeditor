@@ -9,12 +9,12 @@ endif()
 
 include_directories("include")
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "src/core/*.c")
-
-add_library(nexocore STATIC ${SOURCES})
+file(GLOB_RECURSE CORE_SOURCES CONFIGURE_DEPENDS "src/core/*.c")
+add_library(nexocore STATIC ${CORE_SOURCES})
 
 add_executable(nexo "src/nexo/main.c")
 target_link_libraries(nexo nexocore ncurses)
 
-add_executable(nexotest "src/tests/tests.c")
+file(GLOB_RECURSE TESTS_SOURCES CONFIGURE_DEPENDS "src/tests/*.c")
+add_executable(nexotest ${TESTS_SOURCES})
 target_link_libraries(nexotest nexocore ncurses)

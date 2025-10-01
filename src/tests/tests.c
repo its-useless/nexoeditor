@@ -22,16 +22,23 @@ bool (*const TEST_FUNCS[])() = {
 };
 
 int main() {
-    size_t i, total_tests;
+    size_t i, total_tests, passed_tests, failed_tests;
     total_tests = sizeof(TEST_NAMES) / sizeof(TEST_NAMES[0]);
+
     printf("total tests: %lu\n", total_tests);
+
     for (i = 0; i < total_tests; i++) {
         printf("test %s... ", TEST_NAMES[i]);
         if (!TEST_FUNCS[i]()) {
+            failed_tests++;
             printf("failed\n");
         } else {
+            passed_tests++;
             printf("passed\n");
         }
     }
-    return 0;
+
+    printf("passed: %lu, failed: %lu\n", passed_tests, failed_tests);
+
+    return failed_tests > 0 ? 1 : 0;
 }

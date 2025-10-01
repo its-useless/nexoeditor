@@ -77,7 +77,7 @@ void Cursor_EnsurePosition() {
             c++;
         }
 
-        if (cursor.x >= chars)
-            cursor.x = chars - 1;
+        if (cursor.x > chars)
+            cursor.x = chars;
     }
 }

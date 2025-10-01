@@ -9,7 +9,6 @@
 
 int main() {
     buffer = xstralloc("Hello, World!\nline1\nline2\nline3");
-    buffer_update();
 
     initscr();
     for (;;) {

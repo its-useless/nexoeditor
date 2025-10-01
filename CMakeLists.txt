@@ -4,7 +4,7 @@ project(nexoeditor)
 set(CMAKE_C_STANDARD 99)
 if(LINUX)
     add_link_options(-fsanitize=address)
-    add_compile_options(-fsanitize=address -Wall -Wpedantic)
+		add_compile_options(-fsanitize=address -Wall -Wpedantic)
 endif()
 
 include_directories("include")

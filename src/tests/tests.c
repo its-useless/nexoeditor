@@ -22,7 +22,7 @@ bool (*const TEST_FUNCS[])() = {
 };
 
 int main() {
-    size_t i, total_tests, passed_tests, failed_tests;
+    size_t i, total_tests, passed_tests = 0, failed_tests = 0;
     total_tests = sizeof(TEST_NAMES) / sizeof(TEST_NAMES[0]);
 
     printf("total tests: %lu\n", total_tests);

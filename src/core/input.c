@@ -8,7 +8,7 @@ bool Input_IsTextChar(int k) {
 
 bool Input_HandleKeypress(int k) {
     if (Input_IsTextChar(k)) {
-        // input text
+        /* input text */
         return TRUE;
     }
     return FALSE;

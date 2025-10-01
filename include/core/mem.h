@@ -1,5 +1,5 @@
-#if !defined(MEM_H)
-    #define MEM_H
+#if !defined(CORE_MEM_H)
+    #define CORE_MEM_H
 
     #include <stddef.h>
 
@@ -8,4 +8,4 @@ extern char* xstralloc(const char* text);
 
 extern void xfree(void* ptr);
 
-#endif // MEM_H
+#endif

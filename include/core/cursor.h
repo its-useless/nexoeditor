@@ -1,5 +1,5 @@
-#if !defined(CURSOR_H)
-    #define CURSOR_H
+#if !defined(CORE_CURSOR_H)
+    #define CORE_CURSOR_H
     #include <stdbool.h>
     #include <stddef.h>
 
@@ -16,4 +16,4 @@ extern void Cursor_MoveRight();
 extern bool Cursor_HandleKeypress(int key);
 extern void Cursor_EnsurePosition();
 
-#endif // CURSOR_H
+#endif

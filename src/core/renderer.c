@@ -7,7 +7,7 @@
 Renderer renderer = {0};
 
 void Renderer_RenderBuffer() {
-    size_t i, line = 0, line_char = 0;
+    size_t line = 0, line_char = 0;
     char* c = buffer;
     while (*c) {
         if (*c == '\n') {

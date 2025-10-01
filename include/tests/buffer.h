@@ -8,4 +8,4 @@ extern bool test_buffer_insert_3();
 extern bool test_buffer_insert_4();
 extern bool test_buffer_insert_5();
 
-#endif // TESTS_BUFFER_H
+#endif

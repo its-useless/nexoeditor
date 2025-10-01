@@ -16,8 +16,9 @@ void Buffer_InsertChar(size_t pos, char c) {
 
     buffer = realloc(
         buffer,
-        len + 1 + 1
-    ); // one for the new char one for the null byte (isn't included in len)
+        len + 1
+            + 1 /* one for the new char one for the null byte (isn't included in len) */
+    );
     memmove(buffer + pos + 1, buffer + pos, len + 1 - pos);
     buffer[pos] = c;
 }

@@ -44,43 +44,40 @@ void Cursor_HandleKeypress(int key) {
 }
 
 void Cursor_EnsurePosition() {
-    size_t i, line_idx, line_chars = 0;
     size_t lines = 0;
-    char* line = NULL;
+    char *line = NULL, *c = buffer;
 
-    for (i = 0; i < buffer_len; i++) {
-        if (buffer[i] == '\n')
+    while (*c) {
+        if (*c == '\n') {
             lines++;
-
-        if (lines >= cursor.y && !line) {
-            line = buffer + i + 1;
-            if (lines == 0)
-                line--;
+            c++;
+            continue;
         }
+
+        if (lines == cursor.y && !line)
+            line = c;
+        c++;
     }
 
     if (cursor.y < 0)
         cursor.y = 0;
-    if (cursor.y > lines) {
+    if (cursor.y >= lines)
         cursor.y = lines;
-    }
+    if (cursor.x < 0)
+        cursor.x = 0;
 
     if (line) {
-        char* c = line;
-        for (;;) {
-            if (*c == '\n' || *c == 0) {
+        size_t chars = 0;
+        c = line;
+        while (*c) {
+            if (*c == '\n') {
                 break;
             }
+            chars++;
             c++;
-            line_chars++;
         }
 
-        if (cursor.x < 0)
-            cursor.x = 0;
-        if (cursor.x >= line_chars) {
-            cursor.x = line_chars;
-        }
-    } else {
-        cursor.x = 0;
+        if (cursor.x >= chars)
+            cursor.x = chars - 1;
     }
 }

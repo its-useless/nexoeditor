@@ -7,14 +7,17 @@
 #include "core/input.h"
 #include "core/mem.h"
 #include "core/renderer.h"
+#include "core/state.h"
 
 int main() {
-    buffer = xstralloc("Hello, World!\nline1\nline2\nline3");
+    buffer = xstralloc("00\n11\n22\n33");
 
     initscr();
     keypad(stdscr, TRUE);
+    set_escdelay(0);
 
-    for (;;) {
+    state.running = TRUE;
+    while (state.running) {
         int k;
 
         clear();
@@ -30,9 +33,6 @@ int main() {
         k = getch();
         if (!Cursor_HandleKeypress(k))
             Input_HandleKeypress(k);
-
-        if (k == 'q')
-            break;
     }
     endwin();
 

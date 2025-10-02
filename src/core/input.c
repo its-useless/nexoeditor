@@ -6,6 +6,9 @@
 #include "core/cursor.h"
 #include "core/state.h"
 
+bool Input_IsTextChar(wchar_t k);
+void Input_InputChar(wchar_t k);
+
 bool Input_IsTextChar(wchar_t k) {
     size_t i, ranges_total;
     const wchar_t ranges[][2] = {

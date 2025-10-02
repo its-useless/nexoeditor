@@ -25,6 +25,10 @@ void Renderer_RenderBuffer(void) {
             );
         }
 
+        if (line >= s_renderer.text_off_y + getmaxy(stdscr)) {
+            break;
+        }
+
         line_char++;
         c++;
     }

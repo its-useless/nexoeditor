@@ -4,7 +4,7 @@ project(nexoeditor)
 set(CMAKE_C_STANDARD 99)
 if(LINUX OR ANDROID)
     add_link_options(-fsanitize=address)
-		add_compile_options(-fsanitize=address -Wall -Wpedantic -Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Wredundant-decls -Wshadow -Wsign-conversion -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror)
+		add_compile_options(-fsanitize=address -Wall -Wpedantic -Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Wredundant-decls -Wshadow -Wsign-conversion -Wswitch-default -Wundef -Werror)
 endif()
 
 include_directories("include")

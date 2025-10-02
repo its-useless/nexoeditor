@@ -3,6 +3,7 @@
 #include <curses.h>
 
 #include "core/buffer.h"
+#include "core/renderer.h"
 #include "core/state.h"
 
 Cursor cursor = {0};
@@ -10,11 +11,17 @@ Cursor cursor = {0};
 void Cursor_MoveUp(void) {
     cursor.y--;
     Cursor_EnsurePosition();
+    if ((cursor.y - renderer.text_off_y) < 0) {
+        renderer.text_off_y--;
+    }
 }
 
 void Cursor_MoveDown(void) {
     cursor.y++;
     Cursor_EnsurePosition();
+    if ((cursor.y - renderer.text_off_y) >= (getmaxy(stdscr) - 1)) {
+        renderer.text_off_y++;
+    }
 }
 
 void Cursor_MoveLeft(void) {

@@ -18,7 +18,14 @@ void Renderer_RenderBuffer(void) {
             continue;
         }
 
-        mvprintw(line + 1, line_char, "%lc", *c);
+        if (line >= renderer.text_off_y) {
+            mvprintw(
+                line + 1 - (size_t)renderer.text_off_y,
+                line_char,
+                "%lc",
+                *c
+            );
+        }
 
         line_char++;
         c++;

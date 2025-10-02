@@ -16,7 +16,9 @@ void get_wch(wchar_t*);
 int main(void) {
     setlocale(LC_ALL, "");
 
-    state.buffer = xstralloc(L"00\n11\n22\n33\nтест киррилицы");
+    state.buffer = xstralloc(
+        L"00\n11\n22\n33\nтест киррилицы01\n02\n03\n01\n02\n03\n01\n02\n03\n01\n02\n03\n01\n02\n03\n"
+    );
 
     initscr();
     keypad(stdscr, TRUE);
@@ -28,11 +30,21 @@ int main(void) {
 
         clear();
 
-        mvprintw(0, 0, "nexo");
+        mvprintw(
+            0,
+            0,
+            "nexo (cursor: %d %d) (text off: %d %d) (max: %d %d)",
+            cursor.y,
+            cursor.x,
+            renderer.text_off_y,
+            renderer.text_off_x,
+            getmaxy(stdscr),
+            getmaxx(stdscr)
+        );
         move(0, 0);
 
         Renderer_RenderBuffer();
-        move(cursor.y + 1, cursor.x);
+        move(cursor.y + 1 - renderer.text_off_y, cursor.x);
 
         refresh();
 

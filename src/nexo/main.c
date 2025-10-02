@@ -43,6 +43,8 @@ int main(int argc, char** argv) {
         xfree(buf);
 
         fclose(fp);
+    } else {
+        state.buffer = xstralloc(L"");
     }
 
     initscr();

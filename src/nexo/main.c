@@ -16,9 +16,7 @@ void get_wch(wchar_t*);
 int main(void) {
     setlocale(LC_ALL, "");
 
-    state.buffer = xstralloc(
-        L"00\n11\n22\n33\nтест киррилицы01\n02\n03\n01\n02\n03\n01\n02\n03\n01\n02\n03\n01\n02\n03\n"
-    );
+    state.buffer = xstralloc(L"01\n02\n");
 
     initscr();
     keypad(stdscr, TRUE);

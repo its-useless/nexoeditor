@@ -105,7 +105,10 @@ void Input_RemoveChar() {
         Buffer_RemoveChar(pos_index - 1);
         Cursor_MoveLeft();
         if (newline) {
-            Cursor_MoveUp();
+            size_t len = wcslen(state.buffer) + 1;
+            if (pos_index != len) {
+                Cursor_MoveUp();
+            }
             cursor.x = INT32_MAX;
             Cursor_EnsurePosition();
         }

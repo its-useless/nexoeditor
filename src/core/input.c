@@ -8,6 +8,7 @@
 
 bool Input_IsTextChar(wchar_t k);
 void Input_InputChar(wchar_t k);
+void Input_RemoveChar();
 
 bool Input_IsTextChar(wchar_t k) {
     size_t i, ranges_total;
@@ -72,12 +73,54 @@ void Input_InputChar(wchar_t k) {
     }
 }
 
+void Input_RemoveChar() {
+    if (cursor.x == 0 && cursor.y == 0)
+        return;
+
+    wchar_t *c, *pos = NULL;
+    size_t line = 0, line_char = 0, pos_index = 0;
+
+    /* find our pos in text */
+    c = state.buffer;
+    for (;;) {
+        if (line_char == cursor.x && line == cursor.y) {
+            pos = c;
+            break;
+        }
+        if (!*c)
+            break;
+
+        if (*c == '\n') {
+            line_char = 0;
+            line++;
+        } else {
+            line_char++;
+        }
+        c++;
+        pos_index++;
+    }
+
+    if (pos) {
+        bool newline = *(pos - 1) == '\n';
+        Buffer_RemoveChar(pos_index - 1);
+        Cursor_MoveLeft();
+        if (newline) {
+            Cursor_MoveUp();
+            cursor.x = INT32_MAX;
+            Cursor_EnsurePosition();
+        }
+    }
+}
+
 bool Input_HandleKeypress(wchar_t k) {
     switch (k) {
         case 27: {
             state.running = FALSE;
             break;
         }
+        case KEY_BACKSPACE:
+            Input_RemoveChar();
+            break;
         default:
             if (Input_IsTextChar(k)) {
                 /* input text */

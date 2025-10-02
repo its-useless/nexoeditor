@@ -93,5 +93,7 @@ void Cursor_EnsurePosition(void) {
 
         if (cursor.x > chars)
             cursor.x = chars;
+    } else {
+        cursor.x = 0;
     }
 }

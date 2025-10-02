@@ -5,6 +5,7 @@
     #include <wchar.h>
 
 extern void* xmalloc(size_t size);
+extern void* xmalloc_chunk(size_t size, size_t chunk_size);
 extern wchar_t* xstralloc(const wchar_t* text);
 
 extern void xfree(void* ptr);

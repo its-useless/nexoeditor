@@ -11,9 +11,12 @@ typedef struct State {
     bool running;
     Cursor cursor;
     Renderer renderer;
+    char* filename;
 } State;
 
 extern State state;
+
+void State_Free();
 
     #define s_renderer state.renderer
     #define s_cursor state.cursor

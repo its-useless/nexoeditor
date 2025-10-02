@@ -2,6 +2,7 @@
 #include <ncurses.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "core/buffer.h"
 #include "core/cursor.h"
@@ -13,10 +14,36 @@
 /* ion know where it's defined */
 void get_wch(wchar_t*);
 
-int main(void) {
+int main(int argc, char** argv) {
     setlocale(LC_ALL, "");
 
-    s_buffer = xstralloc(L"01\n02\n");
+    if (argc >= 2) {
+        state.filename = strdup(argv[1]);
+        FILE* fp = fopen(state.filename, "r");
+        if (!fp) {
+            printf("nexo: fopen failed\n");
+            return 1;
+        }
+
+        /* get file size */
+        fseek(fp, 0, SEEK_END);
+        size_t size = (size_t)ftell(fp);
+        rewind(fp);
+
+        /* read shi */
+        char* buf = xmalloc(size + 1);
+
+        size_t read = fread(buf, 1, size, fp);
+        buf[read] = L'\0';
+
+        /* convert buffers */
+        state.buffer =
+            xmalloc_chunk(read, sizeof(wchar_t)); /* allocate new buffer*/
+        mbstowcs(state.buffer, buf, read); /* convert char* to wchar_t* */
+        xfree(buf);
+
+        fclose(fp);
+    }
 
     initscr();
     keypad(stdscr, TRUE);
@@ -52,6 +79,6 @@ int main(void) {
     }
     endwin();
 
-    xfree(state.buffer);
+    State_Free();
     return 0;
 }

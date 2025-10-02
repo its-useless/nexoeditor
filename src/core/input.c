@@ -46,7 +46,7 @@ void Input_InputChar(wchar_t k) {
     /* find our pos in text */
     c = state.buffer;
     for (;;) {
-        if (line_char == cursor.x && line == cursor.y) {
+        if (line_char == s_cursor.x && line == s_cursor.y) {
             pos = c;
             break;
         }
@@ -68,13 +68,13 @@ void Input_InputChar(wchar_t k) {
         Cursor_MoveRight();
         if (k == L'\n') {
             Cursor_MoveDown();
-            cursor.x = 0;
+            s_cursor.x = 0;
         }
     }
 }
 
 void Input_RemoveChar() {
-    if (cursor.x == 0 && cursor.y == 0)
+    if (s_cursor.x == 0 && s_cursor.y == 0)
         return;
 
     wchar_t *c, *pos = NULL;
@@ -83,7 +83,7 @@ void Input_RemoveChar() {
     /* find our pos in text */
     c = state.buffer;
     for (;;) {
-        if (line_char == cursor.x && line == cursor.y) {
+        if (line_char == s_cursor.x && line == s_cursor.y) {
             pos = c;
             break;
         }
@@ -109,7 +109,7 @@ void Input_RemoveChar() {
             if (pos_index != len) {
                 Cursor_MoveUp();
             }
-            cursor.x = INT32_MAX;
+            s_cursor.x = INT32_MAX;
             Cursor_EnsurePosition();
         }
     }

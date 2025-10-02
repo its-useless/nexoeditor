@@ -3,11 +3,20 @@
     #include <curses.h>
     #include <wchar.h>
 
+    #include "core/cursor.h"
+    #include "core/renderer.h"
+
 typedef struct State {
     wchar_t* buffer;
     bool running;
+    Cursor cursor;
+    Renderer renderer;
 } State;
 
 extern State state;
+
+    #define s_renderer state.renderer
+    #define s_cursor state.cursor
+    #define s_buffer state.buffer
 
 #endif

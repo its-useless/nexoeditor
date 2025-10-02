@@ -6,7 +6,7 @@
 #include "core/state.h"
 
 void Buffer_InsertChar(size_t pos, wchar_t c) {
-    wchar_t* p = state.buffer;
+    wchar_t* p = s_buffer;
     size_t len = 0;
 
     while (*p) {
@@ -16,17 +16,17 @@ void Buffer_InsertChar(size_t pos, wchar_t c) {
     if (pos > len)
         return;
 
-    state.buffer = realloc(state.buffer, (len + 1 + 1) * sizeof(wchar_t));
+    s_buffer = realloc(s_buffer, (len + 1 + 1) * sizeof(wchar_t));
     memmove(
-        state.buffer + pos + 1,
-        state.buffer + pos,
+        s_buffer + pos + 1,
+        s_buffer + pos,
         (len + 1 - pos) * sizeof(wchar_t)
     );
-    state.buffer[pos] = c;
+    s_buffer[pos] = c;
 }
 
 void Buffer_RemoveChar(size_t pos) {
-    wchar_t* p = state.buffer;
+    wchar_t* p = s_buffer;
     size_t len = 0;
 
     while (*p) {
@@ -36,15 +36,15 @@ void Buffer_RemoveChar(size_t pos) {
     if (pos > len)
         return;
     if (pos == len) {
-        state.buffer = realloc(state.buffer, (len) * sizeof(wchar_t));
-        state.buffer[len - 1] = 0;
+        s_buffer = realloc(s_buffer, (len) * sizeof(wchar_t));
+        s_buffer[len - 1] = 0;
         return;
     }
 
-    void* dest = state.buffer + pos;
-    void* src = state.buffer + pos + 1;
+    void* dest = s_buffer + pos;
+    void* src = s_buffer + pos + 1;
     size_t size = (len - pos - 1) * sizeof(wchar_t);
     memmove(dest, src, size);
-    state.buffer = realloc(state.buffer, (len) * sizeof(wchar_t));
-    state.buffer[len - 1] = 0;
+    s_buffer = realloc(s_buffer, (len) * sizeof(wchar_t));
+    s_buffer[len - 1] = 0;
 }

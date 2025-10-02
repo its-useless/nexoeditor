@@ -8,8 +8,6 @@ typedef struct Cursor {
     int y, x;
 } Cursor;
 
-extern Cursor cursor;
-
 extern void Cursor_MoveUp(void);
 extern void Cursor_MoveDown(void);
 extern void Cursor_MoveLeft(void);

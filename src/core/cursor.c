@@ -6,31 +6,29 @@
 #include "core/renderer.h"
 #include "core/state.h"
 
-Cursor cursor = {0};
-
 void Cursor_MoveUp(void) {
-    cursor.y--;
+    s_cursor.y--;
     Cursor_EnsurePosition();
-    if ((cursor.y - renderer.text_off_y) < 0) {
-        renderer.text_off_y--;
+    if ((s_cursor.y - s_renderer.text_off_y) < 0) {
+        s_renderer.text_off_y--;
     }
 }
 
 void Cursor_MoveDown(void) {
-    cursor.y++;
+    s_cursor.y++;
     Cursor_EnsurePosition();
-    if ((cursor.y - renderer.text_off_y) >= (getmaxy(stdscr) - 1)) {
-        renderer.text_off_y++;
+    if ((s_cursor.y - s_renderer.text_off_y) >= (getmaxy(stdscr) - 1)) {
+        s_renderer.text_off_y++;
     }
 }
 
 void Cursor_MoveLeft(void) {
-    cursor.x--;
+    s_cursor.x--;
     Cursor_EnsurePosition();
 }
 
 void Cursor_MoveRight(void) {
-    cursor.x++;
+    s_cursor.x++;
     Cursor_EnsurePosition();
 }
 
@@ -59,7 +57,7 @@ void Cursor_EnsurePosition(void) {
     wchar_t *line = NULL, *c = state.buffer;
 
     while (*c) {
-        if (lines == cursor.y && !line)
+        if (lines == s_cursor.y && !line)
             line = c;
 
         if (*c == '\n') {
@@ -68,17 +66,17 @@ void Cursor_EnsurePosition(void) {
             continue;
         }
 
-        if (lines == cursor.y && !line)
+        if (lines == s_cursor.y && !line)
             line = c;
         c++;
     }
 
-    if (cursor.y < 0)
-        cursor.y = 0;
-    if (cursor.y >= lines)
-        cursor.y = lines;
-    if (cursor.x < 0)
-        cursor.x = 0;
+    if (s_cursor.y < 0)
+        s_cursor.y = 0;
+    if (s_cursor.y >= lines)
+        s_cursor.y = lines;
+    if (s_cursor.x < 0)
+        s_cursor.x = 0;
 
     if (line) {
         size_t chars = 0;
@@ -91,9 +89,9 @@ void Cursor_EnsurePosition(void) {
             c++;
         }
 
-        if (cursor.x > chars)
-            cursor.x = chars;
+        if (s_cursor.x > chars)
+            s_cursor.x = chars;
     } else {
-        cursor.x = 0;
+        s_cursor.x = 0;
     }
 }

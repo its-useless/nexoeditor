@@ -52,6 +52,9 @@ void Cursor_EnsurePosition(void) {
     wchar_t *line = NULL, *c = state.buffer;
 
     while (*c) {
+        if (lines == cursor.y && !line)
+            line = c;
+
         if (*c == '\n') {
             lines++;
             c++;

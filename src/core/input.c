@@ -17,6 +17,13 @@ bool Input_IsTextChar(wchar_t k) {
         {L'.', L'.'},
         {L',', L','},
         {L' ', L' '},
+        {L'(', L'('},
+        {L')', L')'},
+        {L'{', L'{'},
+        {L'}', L'}'},
+        {L'[', L'['},
+        {L']', L']'},
+        {L'\n', L'\n'},
     };
     ranges_total = sizeof(ranges) / sizeof(ranges[0]);
     for (i = 0; i < ranges_total; i++) {
@@ -55,6 +62,10 @@ void Input_InputChar(wchar_t k) {
     if (pos) {
         Buffer_InsertChar(pos_index, k);
         Cursor_MoveRight();
+        if (k == L'\n') {
+            Cursor_MoveDown();
+            cursor.x = 0;
+        }
     }
 }
 

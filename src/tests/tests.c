@@ -11,14 +11,20 @@ const char* TEST_NAMES[] = {
     "buffer_insert_2",
     "buffer_insert_3",
     "buffer_insert_4",
-    "buffer_insert_5"
+    "buffer_insert_5",
+    "buffer_remove_1",
+    "buffer_remove_2",
+    "buffer_remove_3"
 };
 bool (*const TEST_FUNCS[])(void) = {
     test_buffer_insert_1,
     test_buffer_insert_2,
     test_buffer_insert_3,
     test_buffer_insert_4,
-    test_buffer_insert_5
+    test_buffer_insert_5,
+    test_buffer_remove_1,
+    test_buffer_remove_2,
+    test_buffer_remove_3,
 };
 
 int main(void) {

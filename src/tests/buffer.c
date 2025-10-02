@@ -7,6 +7,7 @@
 #include "core/mem.h"
 #include "core/state.h"
 
+/* insert */
 bool test_buffer_insert_1(void) {
     bool res;
 
@@ -60,6 +61,40 @@ bool test_buffer_insert_5(void) {
     Buffer_InsertChar(0, 'c');
     Buffer_InsertChar(6, 'c');
     res = wcscmp(state.buffer, L"ctcestc") == 0;
+    xfree(state.buffer);
+
+    return res;
+}
+
+/* remove */
+bool test_buffer_remove_1(void) {
+    bool res;
+
+    state.buffer = xstralloc(L"test");
+    Buffer_RemoveChar(0);
+    res = wcscmp(state.buffer, L"est") == 0;
+    xfree(state.buffer);
+
+    return res;
+}
+
+bool test_buffer_remove_2(void) {
+    bool res;
+
+    state.buffer = xstralloc(L"test");
+    Buffer_RemoveChar(1);
+    res = wcscmp(state.buffer, L"tst") == 0;
+    xfree(state.buffer);
+
+    return res;
+}
+
+bool test_buffer_remove_3(void) {
+    bool res;
+
+    state.buffer = xstralloc(L"test");
+    Buffer_RemoveChar(4);
+    res = wcscmp(state.buffer, L"tes") == 0;
     xfree(state.buffer);
 
     return res;

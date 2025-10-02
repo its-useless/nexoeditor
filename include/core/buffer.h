@@ -5,6 +5,6 @@
     #include <wchar.h>
 
 extern void Buffer_InsertChar(size_t pos, wchar_t c);
+extern void Buffer_RemoveChar(size_t pos);
 
 #endif
-

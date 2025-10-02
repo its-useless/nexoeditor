@@ -12,22 +12,16 @@ void Input_RemoveChar();
 
 bool Input_IsTextChar(wchar_t k) {
     size_t i, ranges_total;
+#define RANGE(from, to) {L##from, L##to}
+#define RANGE_CHAR(char) \
+    { L##char, L##char }
     const wchar_t ranges[][2] = {
-        {L'a', L'z'},
-        {L'A', L'Z'},
-        {L'а', L'я'},
-        {L'А', L'Я'},
-        {L'!', L'!'},
-        {L'.', L'.'},
-        {L',', L','},
-        {L' ', L' '},
-        {L'(', L'('},
-        {L')', L')'},
-        {L'{', L'{'},
-        {L'}', L'}'},
-        {L'[', L'['},
-        {L']', L']'},
-        {L'\n', L'\n'},
+        RANGE_CHAR('!'), RANGE('a', 'z'), RANGE('A', 'Z'), RANGE('а', 'я'),
+        RANGE('А', 'Я'), RANGE('0', '9'), RANGE_CHAR('+'), RANGE_CHAR('-'),
+        RANGE_CHAR('*'), RANGE_CHAR('/'), RANGE_CHAR('='), RANGE_CHAR('('),
+        RANGE_CHAR(')'), RANGE_CHAR('['), RANGE_CHAR(']'), RANGE_CHAR('{'),
+        RANGE_CHAR('}'), RANGE_CHAR(';'), RANGE_CHAR(' '), RANGE_CHAR('\n'),
+        RANGE_CHAR('\t')
     };
     ranges_total = sizeof(ranges) / sizeof(ranges[0]);
     for (i = 0; i < ranges_total; i++) {
@@ -40,6 +34,12 @@ bool Input_IsTextChar(wchar_t k) {
 }
 
 void Input_InputChar(wchar_t k) {
+    if (k == L'\t') {
+        for (int i = 0; i < 4; i++) {
+            Input_InputChar(' ');
+        }
+        return;
+    }
     wchar_t *c, *pos = NULL;
     size_t line = 0, line_char = 0, pos_index = 0;
 

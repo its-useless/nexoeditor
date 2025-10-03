@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
         char* buf = xmalloc(size + 1);
 
         size_t read = fread(buf, 1, size, fp);
-        buf[read] = L'\0';
+        buf[read - 1] = L'\0';
 
         /* convert buffers */
         state.buffer =

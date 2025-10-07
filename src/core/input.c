@@ -16,12 +16,18 @@ bool Input_IsTextChar(wchar_t k) {
 #define RANGE_CHAR(char) \
     { L##char, L##char }
     const wchar_t ranges[][2] = {
-        RANGE_CHAR('!'), RANGE('a', 'z'), RANGE('A', 'Z'), RANGE('а', 'я'),
-        RANGE('А', 'Я'), RANGE('0', '9'), RANGE_CHAR('+'), RANGE_CHAR('-'),
-        RANGE_CHAR('*'), RANGE_CHAR('/'), RANGE_CHAR('='), RANGE_CHAR('('),
-        RANGE_CHAR(')'), RANGE_CHAR('['), RANGE_CHAR(']'), RANGE_CHAR('{'),
-        RANGE_CHAR('}'), RANGE_CHAR(';'), RANGE_CHAR(' '), RANGE_CHAR('\n'),
-        RANGE_CHAR('\t')
+        RANGE_CHAR('!'),  RANGE('a', 'z'),  RANGE('A', 'Z'),  RANGE('а', 'я'),
+        RANGE('А', 'Я'),  RANGE('0', '9'),  RANGE_CHAR('+'),  RANGE_CHAR('-'),
+        RANGE_CHAR('*'),  RANGE_CHAR('/'),  RANGE_CHAR('='),  RANGE_CHAR('('),
+        RANGE_CHAR(')'),  RANGE_CHAR('['),  RANGE_CHAR(']'),  RANGE_CHAR('{'),
+        RANGE_CHAR('}'),  RANGE_CHAR(';'),  RANGE_CHAR(' '),  RANGE_CHAR('\n'),
+        RANGE_CHAR('\t'), RANGE_CHAR(','),  RANGE_CHAR('#'),  RANGE_CHAR('<'),
+        RANGE_CHAR('>'),  RANGE_CHAR('\"'), RANGE_CHAR('\''), RANGE_CHAR('%'),
+        RANGE_CHAR('.'),  RANGE_CHAR('/'),  RANGE_CHAR('\\'), RANGE_CHAR('@'),
+        RANGE_CHAR('$'),  RANGE_CHAR('%'),  RANGE_CHAR('^'),  RANGE_CHAR(':'),
+        RANGE_CHAR('*'),  RANGE_CHAR('_'),  RANGE_CHAR('?'),  RANGE_CHAR('`'),
+        RANGE_CHAR('~'),  RANGE_CHAR('|'),
+
     };
     ranges_total = sizeof(ranges) / sizeof(ranges[0]);
     for (i = 0; i < ranges_total; i++) {

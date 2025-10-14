@@ -16,7 +16,7 @@ typedef struct State {
 
 extern State state;
 
-void State_Free();
+void State_Free(void);
 
     #define s_renderer state.renderer
     #define s_cursor state.cursor

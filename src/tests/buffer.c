@@ -99,3 +99,4 @@ bool test_buffer_remove_3(void) {
 
     return res;
 }
+

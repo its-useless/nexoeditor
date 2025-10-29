@@ -8,7 +8,7 @@
 
 bool Input_IsTextChar(wchar_t k);
 void Input_InputChar(wchar_t k);
-void Input_RemoveChar();
+void Input_RemoveChar(void);
 
 bool Input_IsTextChar(wchar_t k) {
     size_t i, ranges_total;
@@ -79,7 +79,7 @@ void Input_InputChar(wchar_t k) {
     }
 }
 
-void Input_RemoveChar() {
+void Input_RemoveChar(void) {
     if (s_cursor.x == 0 && s_cursor.y == 0)
         return;
 

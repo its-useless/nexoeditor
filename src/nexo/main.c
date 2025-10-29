@@ -31,16 +31,21 @@ int main(int argc, char** argv) {
         rewind(fp);
 
         /* read shi */
-        char* buf = xmalloc(size + 1);
+        if (size == 0) {
+            state.buffer =
+                xmalloc_chunk(1, sizeof(wchar_t)); /* allocate new buffer*/
+            memset(state.buffer, 0, sizeof(wchar_t));
+        } else {
+            char* buf = xmalloc(size + 1);
+            size_t read = fread(buf, 1, size, fp);
+            buf[read - 1] = L'\0';
 
-        size_t read = fread(buf, 1, size, fp);
-        buf[read - 1] = L'\0';
-
-        /* convert buffers */
-        state.buffer =
-            xmalloc_chunk(read, sizeof(wchar_t)); /* allocate new buffer*/
-        mbstowcs(state.buffer, buf, read); /* convert char* to wchar_t* */
-        xfree(buf);
+            /* convert buffers */
+            state.buffer =
+                xmalloc_chunk(read, sizeof(wchar_t)); /* allocate new buffer*/
+            mbstowcs(state.buffer, buf, read); /* convert char* to wchar_t* */
+            xfree(buf);
+        }
 
         fclose(fp);
     } else {

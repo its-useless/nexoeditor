@@ -2,7 +2,6 @@
 
 #include <curses.h>
 
-#include "core/buffer.h"
 #include "core/renderer.h"
 #include "core/state.h"
 

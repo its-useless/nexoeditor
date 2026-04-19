@@ -2,7 +2,6 @@
 
 #include <ncurses.h>
 
-#include "core/buffer.h"
 #include "core/state.h"
 
 void Renderer_RenderBuffer(void) {

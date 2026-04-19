@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "core/buffer.h"
 #include "core/cursor.h"
 #include "core/input.h"
 #include "core/mem.h"

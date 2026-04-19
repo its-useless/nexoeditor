@@ -1,6 +1,5 @@
 #include "tests/buffer.h"
 
-#include <string.h>
 #include <wchar.h>
 
 #include "core/buffer.h"
@@ -99,4 +98,3 @@ bool test_buffer_remove_3(void) {
 
     return res;
 }
-

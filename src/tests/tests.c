@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "core/buffer.h"
-#include "core/mem.h"
 #include "tests/buffer.h"
 
 const char* TEST_NAMES[] = {

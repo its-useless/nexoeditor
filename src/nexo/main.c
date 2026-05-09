@@ -10,9 +10,6 @@
 #include "core/renderer.h"
 #include "core/state.h"
 
-/* ion know where it's defined */
-void get_wch(wchar_t*);
-
 int main(int argc, char** argv) {
     setlocale(LC_ALL, "");
 
